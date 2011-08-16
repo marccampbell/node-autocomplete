@@ -1,0 +1,15 @@
+{
+    "name": "autocomplete"
+  , "description": "An in-memory autocomplete package based on the trie data structure"
+  , "keywords": ["autocomplete", "trie", "search"]
+  , "version": "0.0.1"
+  , "homepage": "http://www.github.com/marccampbell/node-autocomplete"
+  , "repository": "git://github.com/marccampbell/node-autocomplete.git"
+  , "author": "Marc Campbell <marc.e.campbell@gmail.com> (http://twitter.com/mccode)"
+  , "main": "index"
+  , "dependencies": {
+    }
+  , "devDependencies": { "should": "0.2.x" }
+  , "engines": { "node": "*" }
+}
+
