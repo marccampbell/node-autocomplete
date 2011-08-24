@@ -17,8 +17,11 @@ a.on('close', function() {
 
 a.on('loaded', function() {
     // Search for a prefix with multiple matches
-    a.search('ap').length.should.eql(3);
-
+    var result = a.search('ap');
+    console.log('\n');
+    console.log('result for searching ap:\n');
+    console.log(result);
+    var ap = a.search('ap').length.should.eql(3);
     // Search for a prefix with a single match
     a.search('bana').length.should.eql(1);
 
@@ -31,8 +34,11 @@ a.on('loaded', function() {
 
     // Remove a result
     a.removeElement('apple');
+    var result = a.search('ap');
+    console.log('\n');
+    console.log('result for searching ap after remove apple:\n');
+    console.log(result);
     a.search('app').length.should.eql(2);
-
     a.removeElement('banana');
     a.search('banana').length.should.eql(0);
 
@@ -40,12 +46,11 @@ a.on('loaded', function() {
 
     matches = a.search('apple');
     a.search('apple').length.should.eql('2');
-
     a.close();
 });
 
 a.initialize(function(onReady) {
-    onReady(['fruit', 'apple', 'banana', 'orange', 'apples', 'apple pie',
+    onReady(['fruit', ['apple', 'red'], 'banana', 'orange', ['apples', 'yumyum'], ['apple pie', 'tasty'],
              'kiwi', 'orange juice']);
 });
 
