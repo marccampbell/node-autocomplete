@@ -112,10 +112,12 @@ var server = net.createServer(function (stream) {
     // send resutls back
     var response = new Object();
     response.method = 'search';
-    response.data = results;
+    response.data = results.slice(0,20); //only return 20 items
     var jresp = JSON.stringify(response);
     var wire ='Content-Length:' + jresp.length + '\r\n';
     wire = wire + 'Request-Id:' + socket.myRequest.requestId + '\r\n\r\n' + jresp;
+    //logDebug("total lenght is:" + wire.length);
+    //logDebug(wire);
     socket.write(wire);
   }
   
