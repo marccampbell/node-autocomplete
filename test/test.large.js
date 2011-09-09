@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var autocomplete = require('../'),
+var autocomplete = require('../lib/autocomplete'),
     sys = require('sys'),
     fs = require('fs');
 
