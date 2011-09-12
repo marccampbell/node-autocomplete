@@ -84,7 +84,7 @@ var server = net.createServer(function (stream) {
     //      console.log('add item:' + items[i]);
           a.addElement(items[i]);
        }
-       else if(item[i].key.length > 0 && !items[i].value) {
+       else if(items[i].key.length > 0 && !items[i].value) {
       //    console.log('add item:' + items[i].key);
           a.addElement(items[i].key);
        }
