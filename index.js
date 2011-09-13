@@ -1,5 +1,6 @@
-var net = require('net'), sys = require('sys'), fs = require('fs'), lazy = require('lazy');
+var net = require('net'), sys = require('sys');
 var winston = require('winston');
+var redis = require("redis");
 var parser = require("./lib/message");  
 var autocomplete = require('./lib/autocomplete');
 var config = require('./config');
@@ -112,7 +113,7 @@ var server = net.createServer(function (stream) {
     // send resutls back
     var response = new Object();
     response.method = 'search';
-    response.data = results.slice(0,20); //only return 20 items
+    response.data = results.slice(0, config.respSize); //only return 20 items
     var jresp = JSON.stringify(response);
     var wire ='Content-Length:' + jresp.length + '\r\n';
     wire = wire + 'Request-Id:' + socket.myRequest.requestId + '\r\n\r\n' + jresp;
@@ -132,25 +133,48 @@ var server = net.createServer(function (stream) {
   }
 
   function initServer(config, AutoComplete) {
-     for(var i = 0; i < config.maxFiles; i++) {
-        var fileName = config.fileLocation + config.filePrefix + i + config.fileSuffix;
-     //   console.log('file name=' + fileName);
-        new lazy(fs.createReadStream(fileName)) 
-            .lines
-            .forEach(function(line) {
-               var kv = line.toString().split(':');
-               //console.log('add key/value: ' + kv);
-               if(kv.length > 1) {
-                  var item = new Object();
-                  item.key = kv[0];
-                  item.value = kv[1];
-                  AutoComplete.addElement(item);
-               }
-               else {
-                  AutoComplete.addElement(kv[0]);
-               }
-            }
-            );
+     var redis_client = redis.createClient(config.redis_server_port, config.redis_server_name);
+     redis_client.on("error", function (err) {
+        logError("Error while working with Redis server" + err);
+        console.log("Error while working with Redis server" + err);
+        process.exit(1);
+     });
+     redis_client.on("ready", function() {
+        redis_client.smembers(config.redis_key, function(err, reply) {
+           if(err) {
+              logError("Error response from Redis:" + err);
+              console.log("Error response from Redis:" + err);
+              process.exit(1);
+           }
+           else if(reply.length == 0) {
+              logError("Empty response");
+              console.log("No data from Redis server, exiting ...");
+              process.exit(1);
+           }
+           else {
+              console.log("Start populating server internal state ...");
+              var itemObj = new Object();
+              for(var i = 0; i < reply.length; i++) {
+                addItem(reply[i], itemObj, AutoComplete);
+              }
+              console.log("Ready to serve traffic");
+           }
+           redis_client.quit();
+        }
+     );
+     });
+  }
+  
+  function addItem(item, itemObj, AutoComplete) {
+     var kv = item.split(':');
+     if(kv.length > 1) {
+        itemObj.key = kv[0];
+        itemObj.value = kv[1];
+        AutoComplete.addElement(itemObj);
+     }
+     else
+     {
+        AutoComplete.addElement(kv[0]);
      }
   }
 
