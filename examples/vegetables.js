@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 
-var Autocomplete = require('../');
+var Autocomplete = require('../lib/autocomplete');
 
 var VEGETABLES = ['arugula', 'beet', 'broccoli', 'cauliflower', 'corn', 'cabbage', 'carrot'];
 
