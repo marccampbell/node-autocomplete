@@ -49,8 +49,8 @@ a.on('loaded', function() {
     a.close();
 });
 
-function onReady(AutoComplete) {
-  AutoComplete.initialize(function(addItem) {
+function onReady(autoComplete) {
+  autoComplete.initialize(function(addItem) {
     addItem(['fruit', ['apple', 'red'], 'banana', 'orange', ['apples', 'yumyum'], ['apple pie', 'tasty'],
              'kiwi', 'orange juice']);
   });
