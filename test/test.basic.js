@@ -9,7 +9,7 @@ require('./common');
 
 process.cwd().should.include.string('autocomplete');
 
-var a = autocomplete.connectAutocomplete();
+var a = autocomplete.connectAutocomplete(onReady);
 
 a.on('close', function() {
     process.exit(0);
@@ -49,8 +49,10 @@ a.on('loaded', function() {
     a.close();
 });
 
-a.initialize(function(onReady) {
-    onReady(['fruit', ['apple', 'red'], 'banana', 'orange', ['apples', 'yumyum'], ['apple pie', 'tasty'],
+function onReady(autoComplete) {
+  autoComplete.initialize(function(addItem) {
+    addItem(['fruit', ['apple', 'red'], 'banana', 'orange', ['apples', 'yumyum'], ['apple pie', 'tasty'],
              'kiwi', 'orange juice']);
-});
+  });
+}
 
