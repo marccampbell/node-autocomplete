@@ -9,7 +9,7 @@ var VEGETABLES = ['arugula', 'beet', 'broccoli', 'cauliflower', 'corn', 'cabbage
 // Create the autocomplete object
 var autocomplete = Autocomplete.connectAutocomplete();
 
-// Initialize the autocopmlete object and define a 
+// Initialize the autocomplete object and define a 
 // callback to populate it with data
 autocomplete.initialize(function(onReady) {
     onReady(VEGETABLES);
