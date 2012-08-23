@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/marccampbell/node-autocomplete.png)](http://travis-ci.org/marccampbell/node-autocomplete)
 # Node Autocomplete
 
  [Node Autocomplete](http://www.github.com/marccampbell/node-autocomplete) is an autocomplete library for [node.js](http://nodejs.org).
