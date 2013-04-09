@@ -1,14 +1,9 @@
-var inspect = require('eyespect').inspector();
-var EventEmitter = require('events').EventEmitter,
-    util = require('util'),
-    Trie = require('./lib/trie').Trie
+var Trie = require('./lib/trie').Trie
 
 var Autocomplete = function Autocomplete(name) {
   this.trie = new Trie()
   return this
 }
-util.inherits(Autocomplete, EventEmitter)
-
 Autocomplete.prototype.initialize = function(elements) {
   var self = this
   elements.forEach(function(element) {

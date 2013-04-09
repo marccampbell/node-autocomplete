@@ -129,9 +129,10 @@ Actively tested with node:
 
 ## Authors
 
-  * Marc Campbell
   * Noah Isaacson
+  * Marc Campbell
 
+Original source code based on [https://github.com/marccampbell/node-autocomplete](https://github.com/marccampbell/node-autocomplete)
 ## License
 
 (The MIT License)
