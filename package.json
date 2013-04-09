@@ -1,9 +1,12 @@
 {
   "name": "triecomplete",
-  "description": "An in-memory autocomplete package based on the trie data structure",
+  "description": "An in-memory node.js autocomplete package based on the trie data structure, based off the autocomplete module",
   "keywords": [
     "autocomplete",
     "trie",
+    "complete",
+    "auto-complete",
+    "completion",
     "search"
   ],
   "version": "0.0.1",
@@ -16,7 +19,17 @@
     "should": "~1.2.2",
     "moment": "~2.0.0"
   },
-  "engines": {
-    "node": "*"
-  }
+  "readmeFilename": "README.md",
+  "directories": {
+    "example": "examples",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/nisaacson/triecomplete.git"
+  },
+  "license": "BSD"
 }
