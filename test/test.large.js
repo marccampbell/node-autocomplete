@@ -37,8 +37,7 @@ readLines(input, function(words) {
         var duration = new Date() - start;
         console.log('Elapsed time to search dictionary for 3 character prefix: ' + duration + 'ms');
 
-        var keys = Object.keys(matches);
-        assert.equal(keys.length, 663);
+        assert.equal(matches.length, 663);
     });
 
     a.initialize(function(onReady) {
