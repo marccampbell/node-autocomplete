@@ -9,6 +9,9 @@
   , "main": "index"
   , "dependencies": {
     }
+  , "scripts": {
+    "test": "./test/run"
+  }
   , "devDependencies": { "should": "0.2.x"}
   , "engines": { "node": "*" }
 }
