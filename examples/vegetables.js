@@ -2,24 +2,18 @@
  * Module dependencies.
  */
 
-var Autocomplete = require('../lib/autocomplete');
+var Autocomplete = require('../index');
 
 var VEGETABLES = ['arugula', 'beet', 'broccoli', 'cauliflower', 'corn', 'cabbage', 'carrot'];
-
-// Create the autocomplete object
-var autocomplete = Autocomplete.connectAutocomplete();
-
-// Initialize the autocomplete object and define a 
-// callback to populate it with data
-autocomplete.initialize(function(onReady) {
-    onReady(VEGETABLES);
-});
-
+var autocomplete = new Autocomplete()
+var data = []
+autocomplete.initialize(VEGETABLES)
 // Later...  When it's time to search:
 var matches = autocomplete.search('ca');
-console.log(matches);
+var stringMatches = matches.map(function (match) {
+  return match.key
+})
 
 // this will print:
-// ['cabbage', 'carrot']
-
-
+// ['cauliflower', 'cabbage', 'carrot']
+console.log(stringMatches);
