@@ -20,6 +20,6 @@ var matches = autocomplete.search('ca');
 console.log(matches);
 
 // this will print:
-// ['cabbage', 'carrot']
+// ['cauliflower', 'cabbage', 'carrot']
 
 
